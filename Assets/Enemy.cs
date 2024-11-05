@@ -17,13 +17,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!target)
-        {
-            GetTarget();
-        } else
-        {
-            RotateTowardsTarget();
-        }
+        //if (!target)
+        //{
+           // GetTarget();
+        //} else
+        //{
+       //     RotateTowardsTarget();
+        //}
 
 
     }
@@ -32,39 +32,39 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = transform.up * speed;
+       // rb.velocity = transform.up * speed;
 
     }
 
     private void RotateTowardsTarget()
     {
-        Vector2 targetDirection = target.position - transform.position;
-        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
-        Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle));
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
+        //Vector2 targetDirection = target.position - transform.position;
+       // float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
+       // Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle));
+       // transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
     }
 
 
     private void GetTarget()
     {
-        if (GameObject.FindGameObjectWithTag("Player"))
-        {
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        //if (GameObject.FindGameObjectWithTag("Player"))
+       // {
+       //     target = GameObject.FindGameObjectWithTag("Player").transform;
+        //}
         
     }
 
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-       if (other.gameObject.CompareTag("Player"))
+       //if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
-            target = null;
-        } else if (other.gameObject.CompareTag("Bullet"))
+            //Destroy(other.gameObject);
+            //target = null;
+        } //else if (other.gameObject.CompareTag("Bullet"))
         {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            //Destroy(other.gameObject);
+           // Destroy(gameObject);
 
         }
            
