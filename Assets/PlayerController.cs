@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
     public float velocidadDeRotacion = 50f;
     public Transform pivote;
+    private bool clockwise = true;
 
     public Rigidbody2D rb;
     public Weapon weapon;
@@ -17,27 +19,27 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-      
-        if (Input.GetMouseButtonDown(0))
-        {
-            weapon.Fire();
-        }
 
-        
+        //if (Input.GetMouseButtonDown(0))
+        //{
+           // weapon.Fire();
+        //}
+
+
         //mouseDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        float direction = clockwise ? 1f : -1f;
+        transform.RotateAround(pivote.position, Vector3.forward, direction * velocidadDeRotacion * Time.deltaTime);
 
-        this.transform.RotateAround(pivote.transform.position, Vector3.forward, velocidadDeRotacion * Time.deltaTime);
-
-
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            this.transform.RotateAround(pivote.transform.position, Vector3.forward, velocidadDeRotacion * Time.deltaTime);
+            clockwise = !clockwise; // Invierte el sentido de rotación
         }
 
 
-        
     }
+
+
 
     private void FixedUpdate()
     {
